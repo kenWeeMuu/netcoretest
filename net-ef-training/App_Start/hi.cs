@@ -1,7 +1,12 @@
-﻿namespace net_ef_training
+﻿using System.Web.Http.Filters;
+
+namespace net_ef_training
 {
-    public class hi
+    public class Cores : ActionFilterAttribute
     {
-        public string fudck { get; set; }
+        public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext) {
+            base.OnActionExecuted(actionExecutedContext);
+            actionExecutedContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+        }
     }
 }

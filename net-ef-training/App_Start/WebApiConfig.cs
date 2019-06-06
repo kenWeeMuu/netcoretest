@@ -10,7 +10,8 @@ namespace net_ef_training
         public static void Register(HttpConfiguration config)
         {
             // Web API 配置和服务
-            config.EnableCors();
+          //  config.EnableCors();
+            config.Filters.Add(new Cores());
             // Web API 路由
             config.MapHttpAttributeRoutes();
 
@@ -20,20 +21,7 @@ namespace net_ef_training
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            config.Routes.MapHttpRoute(
-                name: "AdminApi",
-                routeTemplate: "api/Admin/{controller}/{action}/{id}",
-                defaults: new { action = RouteParameter.Optional, id = RouteParameter.Optional, namespaces = new string[] { "SwashbuckleEx.WebApiTest.Areas.Admin.Controllers" } });
-            config.Routes.MapHttpRoute(
-                name: "ClientApi",
-                routeTemplate: "api/Client/{controller}/{action}/{id}",
-                defaults: new { action = RouteParameter.Optional, id = RouteParameter.Optional, namespaces = new string[] { "SwashbuckleEx.WebApiTest.Areas.Client.Controllers" } });
-
-            config.Routes.MapHttpRoute(
-                name: "CommonApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
-                defaults: new { action = RouteParameter.Optional, id = RouteParameter.Optional, namespaces = new string[] { "SwashbuckleEx.WebApiTest.Controllers" } }
-            );
+            
 
         }
     }
