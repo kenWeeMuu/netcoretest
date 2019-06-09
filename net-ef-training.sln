@@ -9,7 +9,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ef-training-console", "ef-t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstExistingDatabaseSample", "CodeFirstExistingDatabaseSample\CodeFirstExistingDatabaseSample.csproj", "{D94E61C9-D1DA-4B99-A5F9-F8D39EC2DF75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{A030CE92-A18F-4EC6-9072-F23754378B0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test", "test\test.csproj", "{A030CE92-A18F-4EC6-9072-F23754378B0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Erp-db-test", "Erp-db-test\Erp-db-test.csproj", "{C0E4B0C3-65B6-4D75-B51F-92387D141575}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "create.db", "create.db\create.db.csproj", "{0FA00B79-1938-4966-8028-46858B854EF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpDb", "ErpDb\ErpDb.csproj", "{6AF80D12-7875-4221-AF76-6C47DCE4F055}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TjWebApi", "TjWebApi\TjWebApi.csproj", "{7ECB6332-D486-49E9-8B16-8D3C62AF0A55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jsonData", "jsonData\jsonData.csproj", "{5EDD7267-0A27-433C-A925-76C7EFB17090}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminLTE1", "AdminLTE1\AdminLTE1.csproj", "{23FD85CE-F032-4B5E-AF67-0DB8D80BDBE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +45,30 @@ Global
 		{A030CE92-A18F-4EC6-9072-F23754378B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A030CE92-A18F-4EC6-9072-F23754378B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A030CE92-A18F-4EC6-9072-F23754378B0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0E4B0C3-65B6-4D75-B51F-92387D141575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0E4B0C3-65B6-4D75-B51F-92387D141575}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0E4B0C3-65B6-4D75-B51F-92387D141575}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0E4B0C3-65B6-4D75-B51F-92387D141575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FA00B79-1938-4966-8028-46858B854EF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FA00B79-1938-4966-8028-46858B854EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FA00B79-1938-4966-8028-46858B854EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FA00B79-1938-4966-8028-46858B854EF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AF80D12-7875-4221-AF76-6C47DCE4F055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AF80D12-7875-4221-AF76-6C47DCE4F055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AF80D12-7875-4221-AF76-6C47DCE4F055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AF80D12-7875-4221-AF76-6C47DCE4F055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ECB6332-D486-49E9-8B16-8D3C62AF0A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ECB6332-D486-49E9-8B16-8D3C62AF0A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ECB6332-D486-49E9-8B16-8D3C62AF0A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ECB6332-D486-49E9-8B16-8D3C62AF0A55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EDD7267-0A27-433C-A925-76C7EFB17090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EDD7267-0A27-433C-A925-76C7EFB17090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EDD7267-0A27-433C-A925-76C7EFB17090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EDD7267-0A27-433C-A925-76C7EFB17090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23FD85CE-F032-4B5E-AF67-0DB8D80BDBE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23FD85CE-F032-4B5E-AF67-0DB8D80BDBE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23FD85CE-F032-4B5E-AF67-0DB8D80BDBE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23FD85CE-F032-4B5E-AF67-0DB8D80BDBE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

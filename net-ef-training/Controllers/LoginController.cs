@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
+using ErpDb.Entitys;
+using ErpDb.Entitys.Enums;
 using JWT;
 using JWT.Algorithms;
 using JWT.Serializers;
 using net_ef_training.Auth;
 using net_ef_training.Extensions;
-using net_ef_training.Models.Erp;
+ 
 
 namespace net_ef_training.Controllers
 {
- 
+   // [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LoginController : ApiController
     {
         private readonly ErpDbContext _dbContext;
@@ -30,10 +35,10 @@ namespace net_ef_training.Controllers
         public IHttpActionResult aaa(string username, string password)
         {
             var response = ResponseModelFactory.CreateInstance;
-            DncUser user;
+            User user;
             using (_dbContext)
             {
-                user = _dbContext.DncUser.FirstOrDefault(x => x.LoginName == username.Trim());
+                user = _dbContext.Users.Include(x=>x.Roles).FirstOrDefault(x => x.LoginName == username.Trim());
                 if (user == null || user.IsDeleted == CommonEnum.IsDeleted.Yes)
                 {
                     response.SetFailed("用户不存在");
@@ -60,20 +65,22 @@ namespace net_ef_training.Controllers
 
 
 
-                var role = getRoles(user.Guid.ToString());
+             //   var role = getRoles(user.Guid.ToString());
+//             var role = user.Roles.FirstOrDefault();
+//             role.Name = role.Name == "super_administrator" ? "super_administrator" : "super_administrator";
                 var claimsIdentity = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(JwtClaimTypes.Audience, "api"),
                     new Claim(JwtClaimTypes.Issuer, "http://localhost:54321"),
-                    new Claim(JwtClaimTypes.Id, user.Guid.ToString()),
+                    new Claim(JwtClaimTypes.Id, user.UserId.ToString()),
                     new Claim(JwtClaimTypes.Name, username),
                     new Claim("displayName", user.DisplayName),
                     new Claim("loginName", user.LoginName),
                     new Claim("avatar", ""),
                     new Claim(JwtClaimTypes.Email, ""),
-                    new Claim("guid", user.Guid.ToString()),
+                    new Claim("guid", user.UserId.ToString()),
                     new Claim("userType", ((int) user.UserType).ToString()),
-                    new Claim("r", role),
+                    new Claim("r", "super_administrator"),
                     //   new Claim(ClaimTypes.Role,role), 
                     new Claim(JwtClaimTypes.NotBefore,
                         new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString())
@@ -87,10 +94,11 @@ namespace net_ef_training.Controllers
                     //new Claim("guid",user.Guid.ToString()),
                     //new Claim("userType",((int)user.UserType).ToString())
                 });
-
+                var cp = new ClaimsPrincipal(claimsIdentity);
+                AuthContextService.SetPrincipal(cp);
                 var payload = new Dictionary<string, object>
                 {
-                    {"Guid", user.Guid},
+                    {"UserId", user.UserId},
                     {"exp", DateTimeOffset.UtcNow.AddMinutes(30).ToUnixTimeSeconds()}
                 };
                 
@@ -116,7 +124,7 @@ INNER JOIN DncRole AS R ON R.Code=URM.RoleCode
 WHERE URM.UserGuid=@p0";
 
             
-            return _dbContext.DncRole.SqlQuery(sql, guid).Select(x => x.Name).FirstOrDefault();
+            return _dbContext.Roles.SqlQuery(sql, guid).Select(x => x.Name).FirstOrDefault();
             //  return query.Any(any => any.Name == "super_adminstrator");
         }
     }

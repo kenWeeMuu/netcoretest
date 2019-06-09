@@ -10,6 +10,7 @@ namespace test
     public class SchoolContext : DbContext
     {
         public SchoolContext(string connString) : base(connString) {
+
         }
  
 

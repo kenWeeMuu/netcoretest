@@ -13,21 +13,22 @@ namespace net_ef_training.Auth
         protected override bool IsAuthorized(HttpActionContext actionContext)
         {
             var authHeader = from h in actionContext.Request.Headers
-                where h.Key == "auth"
-                select h.Value.FirstOrDefault();
+                where h.Key == "Authorization"
+                             select h.Value.FirstOrDefault();
             if (authHeader != null)
             {
                 string token = authHeader.FirstOrDefault();
                 if (string.IsNullOrEmpty(token)) return false;
                 try
                 {
+                    var t = token.Split(' ')[1];
                     IJsonSerializer serializer = new JsonNetSerializer();
                     IDateTimeProvider provider = new UtcDateTimeProvider();
                     IJwtValidator validator = new JwtValidator(serializer, provider);
                     IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
                     IJwtDecoder decoder = new JwtDecoder(serializer, validator, urlEncoder);
 
-                    var json = decoder.Decode(token, ConfigurationManager.AppSettings["SecureKey"], verify: true);
+                    var json = decoder.Decode(t, ConfigurationManager.AppSettings["SecureKey"], verify: true);
                     return true;
                 }
                 catch (TokenExpiredException)
